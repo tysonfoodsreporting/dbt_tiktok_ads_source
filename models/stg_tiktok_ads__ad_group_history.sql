@@ -1,4 +1,11 @@
-{{ config(enabled=var('ad_reporting__tiktok_ads_enabled', true)) }}
+{{ config(enabled=var('ad_reporting__tiktok_ads_enabled', true),
+     partition_by={
+      "field": "updated_at", 
+      "data_type": "datetime",
+      "granularity": "day"
+    }
+
+) }}
 
 with base as (
 
