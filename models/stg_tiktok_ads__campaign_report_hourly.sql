@@ -36,7 +36,7 @@ final as (
     select
         source_relation,  
         campaign_id,
-        cast(stat_time_hour as {{ dbt.type_timestamp() }}) as stat_time_hour,
+        DATE(TIMESTAMP(CAST(stat_time_hour AS {{ dbt.type_timestamp() }})), 'America/New_York') AS stat_time_hour,
         cpc, 
         cpm,
         ctr,

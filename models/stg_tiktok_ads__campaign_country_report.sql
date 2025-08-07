@@ -28,7 +28,7 @@ final as (
 
     select
         campaign_id,
-        cast(stat_time_day as date) as stat_time_day,
+        DATE(TIMESTAMP(CAST(stat_time_hour AS {{ dbt.type_timestamp() }})), 'America/New_York') AS stat_time_hour,
         country_code,
         coalesce(clicks, 0) as clicks,
         coalesce(impressions, 0) as impressions,
