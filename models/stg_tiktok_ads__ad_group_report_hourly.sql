@@ -1,7 +1,7 @@
 {{ config(enabled=var('ad_reporting__tiktok_ads_enabled', true),
      partition_by={
       "field": "stat_time_hour", 
-      "data_type": "datetime",
+      "data_type": "date",
       "granularity": "day"
     }
 ) }}

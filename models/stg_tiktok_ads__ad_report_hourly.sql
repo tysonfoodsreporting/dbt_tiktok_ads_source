@@ -2,7 +2,7 @@
      unique_key = ['source_relation','ad_id','stat_time_hour'],
      partition_by={
       "field": "stat_time_hour", 
-      "data_type": "datetime",
+      "data_type": "date",
       "granularity": "day"
     }
 
