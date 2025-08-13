@@ -35,10 +35,6 @@ final as (
         coalesce(spend, 0) as spend,
         coalesce(conversion, 0) as conversion,
         coalesce(conversion_rate, 0) as conversion_rate,
-        coalesce(cost_per_conversion, 0) as cost_per_conversion,
-        coalesce(cpc, 0) as cpc,
-        coalesce(cpm, 0) as cpm,
-        coalesce(ctr, 0) as ctr,
         coalesce(real_time_conversion, 0) as real_time_conversion,
         source_relation,
         _fivetran_synced
