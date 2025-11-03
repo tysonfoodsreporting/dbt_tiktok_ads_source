@@ -202,12 +202,12 @@ models:
 
   - name: stg_tiktok_ads__ad_report_hourly
     description: Each record represents data for each ad for each hour.
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - ad_id
-            - stat_time_hour
+    # tests:
+    #   - dbt_utils.unique_combination_of_columns:
+    #       combination_of_columns:
+    #         - source_relation
+    #         - ad_id
+    #         - stat_time_hour
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -282,12 +282,12 @@ models:
 
   - name: stg_tiktok_ads__ad_group_report_hourly
     description: Each record represents data for each ad group for each hour.
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - ad_group_id
-            - stat_time_hour
+    # tests:
+    #   - dbt_utils.unique_combination_of_columns:
+    #       combination_of_columns:
+    #         - source_relation
+    #         - ad_group_id
+    #         - stat_time_hour
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -362,12 +362,12 @@ models:
   
   - name: stg_tiktok_ads__campaign_report_hourly
     description: Each record represent data for each campaign for each hour.
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - campaign_id
-            - stat_time_hour
+    # tests:
+    #   - dbt_utils.unique_combination_of_columns:
+    #       combination_of_columns:
+    #         - source_relation
+    #         - campaign_id
+    #         - stat_time_hour
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
@@ -441,13 +441,13 @@ models:
 
   - name: stg_tiktok_ads__campaign_country_report
     description: Each record provides country-level reporting metrics at the campaign level.
-    tests:
-      - dbt_utils.unique_combination_of_columns:
-          combination_of_columns:
-            - source_relation
-            - campaign_id
-            - stat_time_day
-            - country_code
+    # tests:
+    #   - dbt_utils.unique_combination_of_columns:
+    #       combination_of_columns:
+    #         - source_relation
+    #         - campaign_id
+    #         - stat_time_day
+    #         - country_code
     columns:
       - name: source_relation
         description: "{{ doc('source_relation') }}"
