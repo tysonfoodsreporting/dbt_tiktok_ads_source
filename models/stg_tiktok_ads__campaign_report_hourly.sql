@@ -59,6 +59,7 @@ final as (
         coalesce(video_views_p_25, 0) as video_views_p_25,
         coalesce(video_views_p_50, 0) as video_views_p_50,
         coalesce(video_views_p_75, 0) as video_views_p_75,
+        coalesce(video_views_p_100, 0) as video_views_p_100,
         average_video_play,
         average_video_play_per_user,
         coalesce(real_time_conversion, 0) as real_time_conversion,
