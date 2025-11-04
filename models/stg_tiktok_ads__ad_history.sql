@@ -38,7 +38,8 @@ final as (
     select
         source_relation,  
         ad_id,
-        cast(updated_at as {{ dbt.type_timestamp() }}) as updated_at,
+        --cast(updated_at as {{ dbt.type_timestamp() }}) as updated_at,
+        DATETIME(TIMESTAMP(updated_at), "America/Chicago") as updated_at,
         adgroup_id as ad_group_id,
         advertiser_id,
         campaign_id,
