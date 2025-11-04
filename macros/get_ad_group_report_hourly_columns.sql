@@ -27,6 +27,7 @@
     {"name": "video_views_p_25", "datatype": dbt.type_numeric()},
     {"name": "video_views_p_50", "datatype": dbt.type_numeric()},
     {"name": "video_views_p_75", "datatype": dbt.type_numeric()},
+    {"name": "video_views_p_100", "datatype": dbt.type_numeric()},
     {"name": "video_watched_2_s", "datatype": dbt.type_numeric()},
     {"name": "video_watched_6_s", "datatype": dbt.type_numeric()}
 ] %}
