@@ -32,7 +32,20 @@ fields as (
 
     from base
 ), 
+smartplus as (
+    select *,
+        row_number() over (
+            partition by smart_plus_ad_id 
+            order by updated_at desc
+        ) = 1 as is_most_recent_record
+    from `tyson-reporting-prod.mother_ny_tf_tiktok_ads_raw_prod.smart_plus_ad_history`
+),
 
+smartplus_latest as (
+    select *
+    from smartplus 
+    where is_most_recent_record = true
+),
 final as (
 
     select
@@ -43,7 +56,10 @@ final as (
         fields.adgroup_id as ad_group_id,
         fields.advertiser_id,
         fields.campaign_id,
-        fields.ad_name,
+        case 
+            when fields.smart_plus_ad_id is not null then s.ad_name
+            else fields.ad_name
+        end as ad_name,
         fields.call_to_action,
         fields.click_tracking_url,
         fields.impression_tracking_url,
@@ -58,8 +74,9 @@ final as (
         landing_page_url,
         row_number() over (partition by source_relation, ad_id order by fields.updated_at desc) = 1 as is_most_recent_record
     from fields
-    left join  {{ source('tiktok_ads', 'smart_plus_ad_history') }} s
+    left join  smartplus_latest s
     on safe_cast(fields.smart_plus_ad_id as INT64) = s.smart_plus_ad_id
+    
 )
 
 select * 
