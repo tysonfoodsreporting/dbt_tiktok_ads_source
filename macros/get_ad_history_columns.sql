@@ -2,6 +2,7 @@
 
 {% set columns = [
     {"name": "ad_id", "datatype": dbt.type_numeric()},
+    {"name": "smart_plus_ad_id", "datatype": dbt.type_numeric()},
     {"name": "ad_name", "datatype": dbt.type_string()},
     {"name": "adgroup_id", "datatype": dbt.type_numeric()},
     {"name": "advertiser_id", "datatype": dbt.type_numeric()},

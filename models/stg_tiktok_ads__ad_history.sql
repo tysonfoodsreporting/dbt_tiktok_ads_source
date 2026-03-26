@@ -39,14 +39,14 @@ final as (
         source_relation,  
         ad_id,
         --cast(updated_at as {{ dbt.type_timestamp() }}) as updated_at,
-        DATETIME(TIMESTAMP(updated_at), "America/Chicago") as updated_at,
-        adgroup_id as ad_group_id,
-        advertiser_id,
-        campaign_id,
-        ad_name,
-        call_to_action,
-        click_tracking_url,
-        impression_tracking_url,
+        DATETIME(TIMESTAMP(fields.updated_at), "America/Chicago") as updated_at,
+        fields.adgroup_id as ad_group_id,
+        fields.advertiser_id,
+        fields.campaign_id,
+        fields.ad_name,
+        fields.call_to_action,
+        fields.click_tracking_url,
+        fields.impression_tracking_url,
         {{ dbt.split_part('landing_page_url', "'?'", 1) }} as base_url,
         {{ dbt_utils.get_url_host('landing_page_url') }} as url_host,
         '/' || {{ dbt_utils.get_url_path('landing_page_url') }} as url_path,
@@ -56,8 +56,10 @@ final as (
         {{ tiktok_ads_source.tiktok_ads_extract_url_parameter('landing_page_url', 'utm_content') }} as utm_content,
         {{ tiktok_ads_source.tiktok_ads_extract_url_parameter('landing_page_url', 'utm_term') }} as utm_term,
         landing_page_url,
-        row_number() over (partition by source_relation, ad_id order by updated_at desc) = 1 as is_most_recent_record
+        row_number() over (partition by source_relation, ad_id order by fields.updated_at desc) = 1 as is_most_recent_record
     from fields
+    left join  {{ source('tiktok_ads', 'smart_plus_ad_history') }} s
+    on safe_cast(fields.smart_plus_ad_id as INT64) = s.smart_plus_ad_id
 )
 
 select * 
