@@ -729,3 +729,5 @@ sources:
             description: Total amount spent for the campaign in the account currency.
           - name: stat_time_day
             description: The reporting date for the campaign data (in YYYY-MM-DD format).
+      - name: smart_plus_ad_history
+        identifier: "{{ var('tiktok_ads_smart_plus_ad_history_identifier', 'smart_plus_ad_history') }}"
